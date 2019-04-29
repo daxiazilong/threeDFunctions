@@ -16,9 +16,9 @@ class Init{
     }
     initCamera(){
         this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 10000);
-        this.camera.position.x = 100;
-        this.camera.position.y = 200;
-        this.camera.position.z = 800;
+        this.camera.position.x = 50 ;
+        this.camera.position.y = 50;
+        this.camera.position.z = 1000;
 
         this.camera.lookAt({
             x : 0,
@@ -40,7 +40,7 @@ class Init{
     initLight() {
     // A start
         this.light = new THREE.AmbientLight(0xffffff);
-        this.light.position.set(100, 100, 200);
+        this.light.position.set(0, 0, 0);
         this.scene.add(this.light);
     // A end
 

@@ -10,9 +10,9 @@ class Gencoordinate{
 
         loader.load('assets/source/fonts/helvetiker_regular.typeface.json', function ( font ) {
             [
-                {x:0,y:0,z:Painter.camera.position.z-220,text:'X'},
-                {x:0,y:Painter.camera.position.z,z:0,text:'Z'},
-                {x:1000,y:0,z:0,text:'Y'}
+                { x:0,y:0,z:Painter.camera.position.z - 100,text:'X' },
+                { x:-10,y:window.innerHeight/2,z:20,text:'Z' },
+                { x:window.innerWidth / 2,y:10,z:0,text:'Y' }
             ].forEach((item) => {
                 let geometry = new THREE.TextGeometry( item.text, {
                 font: font,
@@ -45,10 +45,16 @@ class Gencoordinate{
         geometry.vertices.push(new THREE.Vector3( 0, -10000, 0) );
         geometry.vertices.push(new THREE.Vector3( 0, 10000,0) );
 
+        let geometry1 = new THREE.Geometry();
+        geometry1.vertices.push(new THREE.Vector3( 0, 100, 0) );
+        geometry1.vertices.push(new THREE.Vector3( 1000, 100,0) );
+
 
         let line = new THREE.Line( geometry, material );
+        let line1 = new THREE.Line( geometry1, material );
 
         Painter.scene.add( line );
+        Painter.scene.add( line1 );
         Painter.scene.add( coordinateXY );
         
 
