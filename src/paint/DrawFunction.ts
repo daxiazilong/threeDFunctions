@@ -30,12 +30,13 @@ class DrawFunctions{
         });
 
         // material.wireframe  = true;
-
+        material.needsUpdate = true;
         let mesh:THREE.Mesh = new THREE.Mesh( geometry, material );
         Painter.scene.add( mesh );
         animate();
         function animate(){
             texture.needsUpdate = true;
+            material.needsUpdate = true;
             mesh.rotation.y -= 0.01;
             requestAnimationFrame( animate );
             
