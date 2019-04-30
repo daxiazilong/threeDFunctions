@@ -45,16 +45,11 @@ class Gencoordinate{
         geometry.vertices.push(new THREE.Vector3( 0, -10000, 0) );
         geometry.vertices.push(new THREE.Vector3( 0, 10000,0) );
 
-        let geometry1 = new THREE.Geometry();
-        geometry1.vertices.push(new THREE.Vector3( 0, 100, 0) );
-        geometry1.vertices.push(new THREE.Vector3( 1000, 100,0) );
+        let zAxics = new THREE.Line( geometry, material );
 
 
-        let line = new THREE.Line( geometry, material );
-        let line1 = new THREE.Line( geometry1, material );
+        Painter.scene.add( zAxics );
 
-        Painter.scene.add( line );
-        Painter.scene.add( line1 );
         Painter.scene.add( coordinateXY );
         
 

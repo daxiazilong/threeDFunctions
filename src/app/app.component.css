@@ -3,3 +3,9 @@
     width: 100vw;
     height: 100vh;
 }
+form{
+    position: fixed;
+    top: 50px;
+    right: 150px;
+    z-index:10;
+}

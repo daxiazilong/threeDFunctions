@@ -11,7 +11,6 @@ export class AppComponent {
 
 
   ngAfterViewInit(){
-    console.log(this.canvasContainer)
     new paint( this.canvasContainer.nativeElement );
   }
 }
