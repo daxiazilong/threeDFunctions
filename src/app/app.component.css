@@ -9,3 +9,24 @@ form{
     right: 150px;
     z-index:10;
 }
+form{
+    padding: 25px 20px 10px;
+    background: rgba(255,255,255,0.5);
+    border-radius: 15px;
+
+}
+input::-webkit-input-placeholder{
+    color:#7e1010;
+}
+input,button{
+    display:block;
+    color:red;
+    background:none;
+    border:none;
+    outline: none;
+}
+button{
+    margin: 15px auto 5px;  
+    cursor: pointer;
+
+}

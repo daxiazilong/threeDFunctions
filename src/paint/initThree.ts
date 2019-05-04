@@ -6,6 +6,8 @@ class Init{
     renderer:any;
     controls:any;
     light: any;
+    canMove: boolean = true;
+    animaStack: Array< Function > = [];
     
     constructor(container){
         this.initCamera();
@@ -29,6 +31,7 @@ class Init{
     initScene(){
         this.scene = new THREE.Scene();
     }
+    
     initRender(con){
         this.renderer = new THREE.WebGLRenderer({
                     antialias : true
@@ -48,18 +51,14 @@ class Init{
     initControls(con){
         this.controls = new THREE.OrbitControls( this.camera ,con);
         this.controls.update();
-        let painter = this;
-        animate();
-        function animate() {
-
-            requestAnimationFrame( animate );
-
-            // required if controls.enableDamping or controls.autoRotate are set to true
-            painter.controls.update();
-
-            painter.renderer.render( painter.scene, painter.camera );
-
+        let Painter = this;
+        function animate() {            
+            Painter.controls.update();
         }
+
+        // 加入动画栈
+        this.animaStack.push( animate )
     }
+    
 }
 export default Init;
