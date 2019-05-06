@@ -17,7 +17,7 @@ class DrawFunctions{
 
     constructor( Painter: Paint ){
         // this.draw( Painter )
-        this.computeShape( 'y = Math.sin(x*1/20) *50',Painter )
+        this.computeShape( 'y = Math.sin(x) *50',Painter )
     }
     
 
@@ -44,44 +44,49 @@ class DrawFunctions{
     }
 
     handleY(exp:string,Painter?: Paint){
-        // let geometry = (new THREE.ParametricGeometry( genXy , 100, 100)) ;
+        let geometry = (new THREE.ParametricGeometry( genXy , 250, 100)) ;
 
         // three.js坐标系中，width == y, length = x
-        
-        let path = new THREE.Path();
+        function genGeomWithExtrude(){
+            let path = new THREE.Path();
 
-        let x = -500;
-        // shape.moveTo(x,eval( exp ));
-        // path.moveTo(x,eval( exp ));
-        let Path = [];
+            let x = -500;
+            let start = {x:x,y:eval( exp )};
+            path.moveTo(x,eval( exp ));
+            let Path = [];
+            let shape = new THREE.Shape( );
+            shape.autoClose = false;
+            for(  ; x <=500;x++ ){
 
-        for(  ; x <=500;x++ ){
+                let y = eval( exp );
+                Path.push( new THREE.Vector2( x, y ) )
 
-            let y = eval( exp );
-            Path.push( new THREE.Vector2( x, y ) )
-            // shape.lineTo(x,y);
-            // path.lineTo(x,y-1);
+                shape.lineTo(x,y);
+                // shape.moveTo(x,y);
+                // shape.closePath();
+            }
+            shape.moveTo(start.x,start.y);
+            shape.closePath();
 
-            // shape.moveTo(x,y);
-            // path.moveTo(x,y-1);
+            
+            
+            
+            shape.holes = path;
+
+            var extrudeSettings = {
+                steps: 10,
+                depth: 1,
+                bevelEnabled: false,
+            };
+
+            var geometry = new THREE.ExtrudeGeometry( shape, extrudeSettings );
+
         }
-
         
-        var shape = new THREE.Shape( Path );
-        shape.autoClose = false;
-        shape.holes = path;
-
-        var extrudeSettings = {
-            steps: 10,
-            depth: 500,
-            bevelEnabled: false,
-        };
-
-        var geometry = new THREE.ExtrudeGeometry( shape, extrudeSettings );
         this.draw( Painter, geometry );
         function genXy(u,v, target:THREE.Vector3){
-            u = u*Math.PI;
-            v = v*Math.PI;
+            u = u*Math.PI * 2;
+            v = v*Math.PI * 2;
         
             let r = 500 ;
 
@@ -126,8 +131,10 @@ class DrawFunctions{
         let material = new THREE.MeshBasicMaterial({ 
             color: 0xffffff ,
             side:THREE.DoubleSide,
+            opacity:0.5
             // map: texture
         });
+ 
         // material.wireframe  = true;
         material.needsUpdate = true;
 
