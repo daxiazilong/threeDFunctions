@@ -17,7 +17,7 @@ class DrawFunctions{
 
     constructor( Painter: Paint ){
         // this.draw( Painter )
-        this.computeShape( 'y = Math.sin(x) *50',Painter )
+        this.computeShape( 'z = Math.sqrt(x*x + y*y)',Painter )
     }
     
 
@@ -31,6 +31,7 @@ class DrawFunctions{
          */
         switch( exp[0] ){
             case 'z':
+                this.handleZ(exp,Painter);
                 break;
             case 'y':
                 this.handleY(exp,Painter);
@@ -84,22 +85,41 @@ class DrawFunctions{
         }
         
         this.draw( Painter, geometry );
-        function genXy(u,v, target:THREE.Vector3){
-            u = u*Math.PI * 2;
-            v = v*Math.PI * 2;
-        
-            let r = 500 ;
+        function genXy(u:number,v:number, target:THREE.Vector3){
+            // 控制正负号
+            u = u - 0.5;
+            v = v - 0.5;
+            // theTa = 2*Math.PI *theTa;
+            // fin   = Math.PI * fin;
 
-            // three.js 坐标系y轴在上
-            let x = r*Math.cos(u);
+             
+            let r = 1000;
+            let x = r*u;
             let y = eval( exp );
-            let z = r*Math.cos(v);
-            
-            // console.log(y);
-            
-            // 高数书上坐标系z轴在上
+            let z = r*v;
+
+            // let r = 500;
+            // let x = r * Math.sin(fin) * Math.cos(theTa);
+            // let y = eval( exp )* Math.sin(fin) *Math.cos(theTa);
+            // let z = r* Math.cos(fin);
             target.set(y, z, x);
-    
+            // target.set(x, y, z);
+
+        }
+    }
+    handleZ(exp:string,Painter?: Paint){
+        let geometry = (new THREE.ParametricGeometry( genXyz , 250, 100)) ;
+        this.draw( Painter, geometry );
+        function genXyz(u:number,v:number, target:THREE.Vector3){
+            u = u - 0.5;
+            v = v - 0.5;
+
+            let r = 1000;
+            let x = r*u;
+            let y = r*v;
+            let z = eval( exp );
+
+            target.set(y, z, x);
         }
     }
 

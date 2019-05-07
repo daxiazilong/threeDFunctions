@@ -15,26 +15,26 @@ class Gencoordinate{
                 { x:window.innerWidth / 2,y:10,z:0,text:'Y' }
             ].forEach((item) => {
                 let geometry = new THREE.TextGeometry( item.text, {
-                font: font,
-                size: 20,
-                height: 1,
-                curveSegments: 1,
-                bevelEnabled: true,
-                bevelThickness: 1,
-                bevelSize: 1,
-                bevelOffset: 0,
-                bevelSegments: 5
-            });
+                    font: font,
+                    size: 20,
+                    height: 1,
+                    curveSegments: 1,
+                    bevelEnabled: true,
+                    bevelThickness: 4,
+                    bevelSize: 1,
+                    bevelOffset: 0,
+                    bevelSegments: 5
+                });
 
-            let materials = [
-                new THREE.MeshPhongMaterial( { color: 0xff0000 } ),
-            ];
-            geometry = new THREE.BufferGeometry().fromGeometry( geometry );
-            let textMesh1 = new THREE.Mesh( geometry, materials );
-            textMesh1.position.x = item.x;
-            textMesh1.position.y = item.y;
-            textMesh1.position.z = item.z;
-            Painter.scene.add( textMesh1 );
+                let materials = [
+                    new THREE.MeshPhongMaterial( { color: 0xff0000 } ),
+                ];
+                geometry = new THREE.BufferGeometry().fromGeometry( geometry );
+                let textMesh1 = new THREE.Mesh( geometry, materials );
+                textMesh1.position.x = item.x;
+                textMesh1.position.y = item.y;
+                textMesh1.position.z = item.z;
+                Painter.scene.add( textMesh1 );
             })
             
         });
