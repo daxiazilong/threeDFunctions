@@ -37,7 +37,7 @@ class Init{
                     antialias : true
         });
         con.appendChild(this.renderer.domElement);
-        this.renderer.setClearColor(0x000000, 1.0);
+        this.renderer.setClearColor(0xd2d2d2, 1.0);
         this.renderer.setSize(window.innerWidth, window.innerHeight);
     }
     initLight() {
@@ -50,6 +50,10 @@ class Init{
     }
     initControls(con){
         this.controls = new THREE.OrbitControls( this.camera ,con);
+        // this.controls.autoRotate = true;
+        this.controls.enableKeys = false;
+        this.controls.enableZoom = false;
+        // this.controls.dampingFactor = 1;
         this.controls.update();
         let Painter = this;
         function animate() {            

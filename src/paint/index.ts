@@ -16,10 +16,7 @@ class Paint extends Init{
             if( element.name === 'function' ){
                 this.scene.remove(element)
             }
-            
         });
-        this.renderer.setClearColor(0x000000, 1.0);
-        this.drawCoordite.draw(this);
         this.renderer.render( this.scene,this.camera )
     }
     run(){

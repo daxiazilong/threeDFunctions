@@ -16,8 +16,8 @@ class DrawFunctions{
     independentVariable:Array<string> = ['x','y','z'];
 
     constructor( Painter: Paint ){
-        // this.draw( Painter )
-        this.computeShape( 'z = Math.sqrt(x*x + y*y)',Painter )
+        this.draw( Painter )
+        // this.computeShape( 'z = -x-y +200',Painter )
     }
     
 
@@ -111,10 +111,10 @@ class DrawFunctions{
         let geometry = (new THREE.ParametricGeometry( genXyz , 250, 100)) ;
         this.draw( Painter, geometry );
         function genXyz(u:number,v:number, target:THREE.Vector3){
-            u = u - 0.5;
-            v = v - 0.5;
+            u = (u - 0.5) * 2;
+            v = (v - 0.5) * 2;
 
-            let r = 1000;
+            let r = 500;
             let x = r*u;
             let y = r*v;
             let z = eval( exp );
@@ -139,19 +139,18 @@ class DrawFunctions{
 
     draw(Painter,geometry?:THREE.ParametricGeometry){
 
-        geometry =  geometry ? geometry : (new THREE.ParametricGeometry( BasicShapes.genXy , 125, 125)) ;
+        geometry =  geometry ? geometry : (new THREE.ParametricGeometry( BasicShapes.genCube , 125, 125)) ;
 
 
         let texture = new THREE.TextureLoader().load( "assets/source/images/lanqiu.gif" );
 
         texture.center = new THREE.Vector2( 0.5, 0.5 );
-        // texture.image = new THREE.TextureLoader().load( "assets/source/images/lanqiu.gif" );
         texture.needsUpdate = true;
         texture.rotation = -1.5;
-        let material = new THREE.MeshBasicMaterial({ 
+        let material = new THREE.MeshNormalMaterial({ 
             color: 0xffffff ,
             side:THREE.DoubleSide,
-            opacity:0.5
+            opacity:0.5,
             // map: texture
         });
  

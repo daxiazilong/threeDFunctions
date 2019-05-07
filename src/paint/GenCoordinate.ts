@@ -38,7 +38,7 @@ class Gencoordinate{
             })
             
         });
-        let coordinateXY = new THREE.GridHelper( 2000, 100 , 0xff0000, 0xEED5B7);
+        let coordinateXY = new THREE.GridHelper( 2000, 100 , 0xff0000, 0xffffff);
         let material = new THREE.LineBasicMaterial( { color: 0xff0000 } );
         let geometry = new THREE.Geometry();
 
@@ -49,7 +49,6 @@ class Gencoordinate{
 
 
         Painter.scene.add( zAxics );
-
         Painter.scene.add( coordinateXY );
         
 

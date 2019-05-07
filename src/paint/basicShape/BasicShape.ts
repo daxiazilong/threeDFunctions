@@ -29,7 +29,7 @@ class BasicShapes{
         u = u*Math.PI;
         v = v*Math.PI*2;
 
-        let r = 500;
+        let r = 250;
 
         let x = r*Math.sin( u )*Math.cos(v);
         let z = r*Math.sin( u )*Math.sin(v);
